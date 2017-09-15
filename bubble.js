@@ -7,10 +7,10 @@ function Bubble(p, x, y) {
   this.maxspeed = 10;
   this.maxforce = 1;
   this.col = p.random() > 0.5 ? "green" : "red";
-  this.p=p;
+  this.p = p;
 }
 
-Bubble.prototype.behaviors = function() {
+Bubble.prototype.behaviors = function () {
   var arrive = this.arrive(this.target);
   var mouse = this.p.createVector(this.p.mouseX, this.p.mouseY);
   var flee = this.flee(mouse);
@@ -22,23 +22,23 @@ Bubble.prototype.behaviors = function() {
   this.applyForce(flee);
 }
 
-Bubble.prototype.applyForce = function(f) {
+Bubble.prototype.applyForce = function (f) {
   this.acc.add(f);
 }
 
-Bubble.prototype.update = function() {
+Bubble.prototype.update = function () {
   this.pos.add(this.vel);
   this.vel.add(this.acc);
   this.acc.mult(0);
 }
 
-Bubble.prototype.show = function() {
+Bubble.prototype.show = function () {
   this.p.stroke(this.col);
   this.p.strokeWeight(this.r);
   this.p.point(this.pos.x, this.pos.y);
 }
 
-Bubble.prototype.arrive = function(target) {
+Bubble.prototype.arrive = function (target) {
   var desired = p5.Vector.sub(target, this.pos);
   var d = desired.mag();
   var speed = this.maxspeed;
@@ -51,7 +51,7 @@ Bubble.prototype.arrive = function(target) {
   return steer;
 }
 
-Bubble.prototype.flee = function(target) {
+Bubble.prototype.flee = function (target) {
   var desired = p5.Vector.sub(target, this.pos);
   var d = desired.mag();
   if (d < 50) {
